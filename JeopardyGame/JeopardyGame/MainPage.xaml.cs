@@ -25,6 +25,15 @@ namespace JeopardyGame
         public MainPage()
         {
             this.InitializeComponent();
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var name = teamName.Text;
+            lbTeams.Items.Add(name);
+            teamName.Text = "";
+
         }
     }
 }
