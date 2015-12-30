@@ -6,8 +6,45 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="DataTemplate1">
+            <TextBlock Text="{Binding Name}" />
+        </DataTemplate>
+    </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="48" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" FontSize="26.667">
+        	<Run Text="Settings"/>
+        	<LineBreak/>
+        	<Run/>
+        </TextBlock>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0">
+            <StackPanel Name="left" Margin="0,0,200,0">
+                <TextBlock Text="Players/Teams" FontSize="24" Width="300" Margin="0,0,0,10"></TextBlock>
+                <ListBox x:Name="lbTeams" ItemTemplate="{StaticResource DataTemplate1}" ScrollViewer.VerticalScrollMode="Auto" MaxHeight="250">
+                    <ListBox.ItemContainerTransitions>
+                        <TransitionCollection>
 
-    </Grid>
+                            <ContentThemeTransition></ContentThemeTransition>
+
+                        </TransitionCollection>
+                    </ListBox.ItemContainerTransitions>
+
+
+                </ListBox>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBox x:Name="teamName" Width="240"></TextBox>
+                    <Button Content="Add" HorizontalAlignment="Left" Margin="10,0,0,0" Click="Button_Click"></Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Name="right">
+                <TextBlock Text="Load questions" FontSize="24" Margin="0,0,0,10">
+                </TextBlock>
+                <TextBlock x:Name="questionsName" Text="No questions loaded" Margin="0,0,0,10"></TextBlock>
+                <Button Content="Load" Click="PickAFileButton_Click" />
+            </StackPanel>
+        </StackPanel>
+
+        <Button Content="Start" Margin="0,200,0,0" Click="Start_Click" Width="100" Height="100" HorizontalAlignment="Center"></Button>
+    </StackPanel>
 </Page>

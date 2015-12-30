@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="JeopardyGame.Categories"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:JeopardyGame"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </ItemsPanelTemplate>
+        <DataTemplate x:Key="DataTemplate2">
+            <Button Click="Button_Click" CommandParameter="{Binding }">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border Height="100" Width="160" Margin="0, 10, 0, 0" Background="Blue">
+                            <TextBlock Foreground="Blue" FontSize="62" Text="{Binding Points}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+           
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate1">
+            <StackPanel Margin="0,0,15,0">
+                <Border Height="100" Width="160" Background="Blue">
+                    <TextBlock Foreground="White" TextWrapping="WrapWholeWords" Text="{Binding CategoryName}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Border>
+                <ItemsControl ItemsSource="{Binding Questions}" ItemTemplate="{StaticResource DataTemplate2}" >
+                    
+                </ItemsControl>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ItemsControl Margin="0,15,0,0" x:Name="categories" ItemsPanel="{StaticResource ItemsPanelTemplate1}" ItemTemplate="{StaticResource DataTemplate1}">
+            <ItemsControl.Transitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition></AddDeleteThemeTransition>
+
+                </TransitionCollection>
+            </ItemsControl.Transitions>
+        </ItemsControl>
+        <Border x:Name="test" Visibility="Collapsed"  Background="#FFF60000">
+            <Border.Transitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition></AddDeleteThemeTransition>
+                </TransitionCollection>
+            </Border.Transitions>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Content="Click me :)" FontSize="90" Click="Button_Click_1"></Button>
+        </Border>
+
+    </Grid>
+</Page>
